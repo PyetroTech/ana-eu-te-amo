@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pra você</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --fundo: #1b1a3a;
+    --fundo-claro: #26254d;
+    --texto: #f6eef3;
+    --texto-suave: #c9c0d6;
+    --rosa: #f4a6b7;
+    --dourado: #ffd27d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: "Nunito", system-ui, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  h1, h2, .numero {
+    font-family: "Young Serif", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  section {
+    max-width: 34rem;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem;
+  }
+
+  .abertura {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .abertura .pequeno { color: var(--texto-suave); }
+  .numero {
+    font-size: clamp(6rem, 32vw, 11rem);
+    color: var(--rosa);
+    margin: 0.5rem 0;
+  }
+  .abertura h1 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+  .abertura .desde { color: var(--dourado); font-size: 0.95rem; }
+
+  h2 { font-size: 1.9rem; margin-bottom: 2rem; }
+
+  .linha {
+    list-style: none;
+    border-left: 2px solid var(--rosa);
+    padding-left: 1.5rem;
+  }
+  .linha li { margin-bottom: 2rem; position: relative; }
+  .linha li::before {
+    content: "";
+    position: absolute;
+    left: -1.95rem;
+    top: 0.55rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: var(--rosa);
+  }
+  .linha .data { color: var(--dourado); font-weight: 600; }
+  .linha .titulo { font-family: "Young Serif", Georgia, serif; font-size: 1.3rem; }
+  .linha p { color: var(--texto-suave); }
+
+  .carta {
+    background: var(--fundo-claro);
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .carta summary {
+    cursor: pointer;
+    padding: 1.1rem 1.3rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  .carta summary::-webkit-details-marker { display: none; }
+  .carta summary::after { content: "✉"; float: right; color: var(--rosa); }
+  .carta[open] summary::after { content: "♥"; }
+  .carta summary:focus-visible { outline: 3px solid var(--dourado); outline-offset: 2px; border-radius: 0.75rem; }
+  .carta .texto { padding: 0 1.3rem 1.3rem; color: var(--texto-suave); }
+
+  .final { text-align: center; padding-bottom: 7rem; }
+  .final p { margin-bottom: 1.2rem; }
+  .final .assinatura { font-family: "Young Serif", Georgia, serif; font-size: 1.5rem; color: var(--rosa); }
+</style>
+</head>
+
+<body>
+
+<section class="abertura">
+  <p class="pequeno">Oi, Ana Paula.</p>
+  <div class="numero" id="dias">0</div>
+  <h1>dias desde o nosso primeiro encontro.</h1>
+  <p class="desde">14 de agosto de 2026</p>
+</section>
+
+<section>
+  <h2>O que a gente já viveu</h2>
+  <ul class="linha">
+    <li>
+      <span class="data">14 de agosto</span>
+      <p class="titulo">Nosso primeiro encontro</p>
+      <p>Eu quase morri de vergonha, porque nunca tinha saído com uma menina antes. Mas valeu cada segundo de nervoso.</p>
+    </li>
+    <li>
+      <span class="data">27 de setembro</span>
+      <p class="titulo">Nosso primeiro beijo</p>
+      <p>Eu amei. Foi tão bom aquele momento que eu queria poder voltar nele.</p>
+    </li>
+    <li>
+      <span class="data">1 de outubro</span>
+      <p class="titulo">3 meses de conversa</p>
+      <p>Às vezes a gente se desentende, mas no final eu sempre vou estar aqui pra você e pra te apoiar.</p>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>Abra quando você quiser</h2>
+
+  <details class="carta">
+    <summary>Abra quando estiver com saudade</summary>
+    <p class="texto">Eu estou aqui, mesmo quando parece longe. Eu sempre vou estar aqui pra você.</p>
+  </details>
+
+  <details class="carta">
+    <summary>Abra quando o dia estiver difícil</summary>
+    <p class="texto">Respira fundo. Eu estou do seu lado e vou te apoiar no que você precisar.</p>
+  </details>
+
+  <details class="carta">
+    <summary>Abra quando quiser saber o quanto eu te amo</summary>
+    <p class="texto">Eu amo quando você me chama de fofinho e de seu nenê. É assim que eu sei que estou no lugar certo.</p>
+  </details>
+</section>
+
+<section class="final">
+  <p>Obrigado por esses 3 meses. Que venham muitos mais, e que a gente sempre se acerte no final.</p>
+  <p class="assinatura">— Juan, o seu Pietro</p>
+</section>
+
+<script>
+  const inicio = new Date(2026, 7, 14);
+  const hoje = new Date();
+  const dias = Math.max(0, Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24)));
+  document.getElementById("dias").textContent = dias;
+</script>
+
+</body>
+        </html>
