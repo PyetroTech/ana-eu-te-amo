@@ -137,17 +137,17 @@
 
   <details class="carta">
     <summary>Abra quando estiver com saudade</summary>
-    <p class="texto">Eu estou aqui, mesmo quando parece longe. Eu sempre vou estar aqui pra você.</p>
+    <p class="texto" data-carta="saudade"></p>
   </details>
 
   <details class="carta">
     <summary>Abra quando o dia estiver difícil</summary>
-    <p class="texto">Respira fundo. Eu estou do seu lado e vou te apoiar no que você precisar.</p>
+    <p class="texto" data-carta="dificil"></p>
   </details>
 
   <details class="carta">
     <summary>Abra quando quiser saber o quanto eu te amo</summary>
-    <p class="texto">Eu amo quando você me chama de fofinho e de seu nenê. É assim que eu sei que estou no lugar certo.</p>
+    <p class="texto" data-carta="amor"></p>
   </details>
 </section>
 
@@ -157,11 +157,51 @@
 </section>
 
 <script>
+  // Conta quantos dias passaram desde 14/08/2026 (mês começa em 0: agosto = 7)
   const inicio = new Date(2026, 7, 14);
   const hoje = new Date();
   const dias = Math.max(0, Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24)));
   document.getElementById("dias").textContent = dias;
+
+  // ===== MENSAGENS DAS CARTAS =====
+  // Para adicionar uma mensagem, coloque uma vírgula no final da última e escreva outra entre aspas.
+  const mensagens = {
+    saudade: [
+      "Eu estou aqui, mesmo quando parece longe. Eu sempre vou estar aqui pra você.",
+      "Fecha os olhos e lembra do nosso primeiro beijo. Eu também lembro, toda hora.",
+      "A saudade existe porque o que a gente tem é bom. Já já a gente se vê.",
+      "Pensei em você agora. Aliás, penso o tempo todo."
+    ],
+    dificil: [
+      "Respira fundo. Eu estou do seu lado e vou te apoiar no que você precisar.",
+      "Você não está sozinha. Quando o dia pesar, é só falar comigo.",
+      "Esse dia vai passar, e eu vou estar aqui quando passar também.",
+      "Você é mais forte do que está sentindo agora. E eu acredito em você."
+    ],
+    amor: [
+      "Eu amo quando você me chama de fofinho e de seu nenê. É assim que eu sei que estou no lugar certo.",
+      "Eu te amo mais do que consigo escrever num site.",
+      "Mesmo quando a gente se desentende, no final eu sempre escolho você.",
+      "Eu fico feliz toda vez que você me chama de Pietro."
+    ]
+  };
+
+  // Sorteia uma mensagem da lista, sem repetir a que já está aparecendo
+  function sortear(lista, atual) {
+    const opcoes = lista.filter(m => m !== atual);
+    return opcoes[Math.floor(Math.random() * opcoes.length)];
+  }
+
+  document.querySelectorAll(".carta").forEach(carta => {
+    const texto = carta.querySelector(".texto");
+    const lista = mensagens[texto.dataset.carta];
+    texto.textContent = sortear(lista);
+    // Cada vez que ela abre a carta, aparece uma mensagem nova
+    carta.addEventListener("toggle", () => {
+      if (carta.open) texto.textContent = sortear(lista, texto.textContent);
+    });
+  });
 </script>
 
 </body>
-        </html>
+  </html>
