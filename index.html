@@ -97,6 +97,15 @@
   .carta summary:focus-visible { outline: 3px solid var(--dourado); outline-offset: 2px; border-radius: 0.75rem; }
   .carta .texto { padding: 0 1.3rem 1.3rem; color: var(--texto-suave); }
 
+  .video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: var(--fundo-claro);
+  }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
   .final { text-align: center; padding-bottom: 7rem; }
   .final p { margin-bottom: 1.2rem; }
   .final .assinatura { font-family: "Young Serif", Georgia, serif; font-size: 1.5rem; color: var(--rosa); }
@@ -153,10 +162,25 @@
   </details>
 </section>
 
+<section>
+  <h2>A música que eu dediquei pra você</h2>
+  <div class="video">
+    <iframe src="https://www.youtube.com/embed/URxCQrotfM8" title="Música dedicada" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
 <section class="final">
   <p id="obrigado">Obrigado por esses 3 meses. Que venham muitos mais, e que a gente sempre se acerte no final.</p>
   <p class="assinatura">— Juan, o seu Pietro</p>
 </section>
+
+<script>
+  // Se algo der errado no código, mostra o erro na tela (ajuda a achar o problema)
+  window.onerror = function (msg) {
+    var c = document.getElementById("conversa");
+    if (c) c.textContent = "Erro no código: " + msg;
+  };
+</script>
 
 <script>
   // Conta quantos dias passaram desde 14/08/2026 (mês começa em 0: agosto = 7)
